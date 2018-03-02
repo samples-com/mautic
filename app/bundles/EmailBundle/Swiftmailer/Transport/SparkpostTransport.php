@@ -32,6 +32,11 @@ class SparkpostTransport extends AbstractTokenArrayTransport implements \Swift_T
     private $apiKey;
 
     /**
+     * @var string|null
+     */
+    private $host;
+
+    /**
      * @var TranslatorInterface
      */
     private $translator;
@@ -46,9 +51,10 @@ class SparkpostTransport extends AbstractTokenArrayTransport implements \Swift_T
      *
      * @param $apiKey
      */
-    public function __construct($apiKey, TranslatorInterface $translator, TransportCallback $transportCallback)
+    public function __construct($apiKey, TranslatorInterface $translator, TransportCallback $transportCallback, $host = 'api.sparkpost.com')
     {
         $this->setApiKey($apiKey);
+        $this->setHost($host);
 
         $this->translator        = $translator;
         $this->transportCallback = $transportCallback;
@@ -73,6 +79,22 @@ class SparkpostTransport extends AbstractTokenArrayTransport implements \Swift_T
     }
 
     /**
+     * @param string $host
+     */
+    public function setHost($host)
+    {
+        $this->host = $host;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getHost()
+    {
+        return $this->host;
+    }
+
+    /**
      * Start this Transport mechanism.
      */
     public function start()
@@ -90,7 +112,7 @@ class SparkpostTransport extends AbstractTokenArrayTransport implements \Swift_T
     protected function createSparkPost()
     {
         $httpAdapter = new GuzzleAdapter(new Client());
-        $sparky      = new SparkPost($httpAdapter, ['key' => $this->apiKey]);
+        $sparky      = new SparkPost($httpAdapter, ['key' => $this->apiKey, 'host' => ]);
 
         return $sparky;
     }

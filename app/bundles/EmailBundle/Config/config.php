@@ -463,6 +463,7 @@ return [
                     '%mautic.mailer_api_key%',
                     'translator',
                     'mautic.email.model.transport_callback',
+                    '%mautic.mailer_host%'
                 ],
             ],
             'mautic.helper.mailbox' => [

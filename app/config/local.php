@@ -23,4 +23,5 @@ $parameters = array(
 	'mailer_spool_path' => '%kernel.root_dir%/spool',
 	'secret_key' => getenv('SECRET_KEY'),
 	'site_url' => getenv('SITE_URL'),
+    'mautic.mailer_host' => getenv('MAUTIC_MAILER_HOST'),
 );
